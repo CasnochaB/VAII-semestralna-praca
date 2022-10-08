@@ -1,0 +1,2 @@
+# VAII-semestralna-praca
+ SemestralnaPraca
