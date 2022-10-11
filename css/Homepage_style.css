@@ -1,22 +1,13 @@
 h1 {
-    color: blue;
+    color: black;
     font-family: "Lucida Console", "Courier New", monospace;
     text-align: center;
     font-size: 2vw;
-}
-.menutext {
-    font-size: 2vw;
-    text-align: center;
 }
 #search_text {
     color: cornflowerblue;
     text-align: center;
     font-size: 12px;
-}
-.center-align {
-    vertical-align: center;
-    horiz-align: center;
-    width: 60%;
 }
 .buttontext {
     color: cornflowerblue;
@@ -25,3 +16,11 @@ h1 {
 .search-container {
     height: 10%;
 }
+.carousel {
+    width:40%;
+    margin:auto;
+}
+.carousel-recipe {
+    background-image: url("/assets/backgrounds/white.png");
+}
+

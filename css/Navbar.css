@@ -1,0 +1,24 @@
+.navbar-nav .nav-item .nav-link {
+    color: #67ff00;
+}
+
+.navbar-nav .nav-item:hover .nav-link {
+    color: #000000;
+}
+
+.navbar-text {
+    font-size: 2vw;
+    text-align: center;
+}
+.nav-dropdown-text {
+    color:green;
+}
+.nav-dropdown-text:hover {
+    color: black;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: #67ff00;
+}
+.navbar-align {
+    width: 50%;
+}

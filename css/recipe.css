@@ -1,0 +1,34 @@
+.recipe-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.recipe-icon {
+    height: 32px;
+    width: 32px;
+    text-align: center;
+}
+.recipe-icon-text {
+    text-align: center;
+}
+.column {
+    float: left;
+    width: auto;
+    padding: 5px;
+}
+.right-offset {
+    float: right;
+    text-align: right;
+}
+.left-offset {
+    float: left;
+    text-align: left;
+}
+h1 {
+    text-align: center;
+    color: #67ff00;
+}
+.container-background-white {
+    background-image: url("/assets/backgrounds/white.png");
+}
