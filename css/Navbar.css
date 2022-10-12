@@ -5,9 +5,10 @@
 .navbar-nav .nav-item:hover .nav-link {
     color: #000000;
 }
-
+.navbar-img:hover {
+    filter: invert(100%);
+}
 .navbar-text {
-    font-size: 2vw;
     text-align: center;
 }
 .nav-dropdown-text {
@@ -19,6 +20,6 @@
 .dropdown-item:focus, .dropdown-item:hover {
     background-color: #67ff00;
 }
-.navbar-align {
-    width: 50%;
+.nav-timeDisplay {
+    color: #67ff00;
 }

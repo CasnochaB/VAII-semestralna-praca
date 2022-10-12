@@ -9,21 +9,10 @@
     width: 32px;
     text-align: center;
 }
-.recipe-icon-text {
-    text-align: center;
-}
 .column {
     float: left;
     width: auto;
     padding: 5px;
-}
-.right-offset {
-    float: right;
-    text-align: right;
-}
-.left-offset {
-    float: left;
-    text-align: left;
 }
 h1 {
     text-align: center;
