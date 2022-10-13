@@ -23,13 +23,4 @@ a:hover {
     color: #67ff00;
 }
 
-.btn-primary {
-    background-color: #67ff00;
-    border-color: black;
-    color: black;
-}
-.btn-primary:hover {
-    background-color: black!important;
-    border-color: black!important;
-}
 

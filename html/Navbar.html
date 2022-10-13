@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto navbar-text">
                 <li class="nav-item">
-                    <a class="nav-link" href=""> Prihlásiť</a>
+                    <button type="button" class="btn nav-link" data-bs-toggle="modal" data-bs-target="#prihlasitModal"> Prihlásiť/Zaregistrovať sa</button>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Recepty</a>
@@ -41,5 +41,43 @@
             <img src="/assets/img/search.svg" alt="Bootstrap" width="32" height="32">
             hľadať
         </button>
+    </div>
+</div>
+
+<div class="modal" id="prihlasitModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Prihlásenie</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h3>Prihlasovacie meno</h3>
+                <label>
+                    <input type="text">
+                </label>
+                <h3>Heslo</h3>
+                <label>
+                    <input type="text">
+                </label>
+            </div>
+
+            <!-- Modal footer -->
+            <hr>
+            <div class="row" >
+                <div class="col left-offset modal-margin">
+                    <p>Nie ste registrovaný?</p>
+                    <a class="btn btn-primary" href="registrationPage.html">Prejsť na registráciu</a>
+                </div>
+                <div class="col right-offset modal-margin" style="margin-top: auto">
+                    <button type="button" class="btn btn-primary">Prihlásiť</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>

@@ -27,3 +27,17 @@
     max-height: 80px;
     height: 100%;
 }
+.btn-primary {
+    background-color: #67ff00;
+    border-color: black;
+    color: black;
+}
+.btn-primary:hover {
+    background-color: black!important;
+    border-color: black!important;
+}
+.modal-margin{
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
