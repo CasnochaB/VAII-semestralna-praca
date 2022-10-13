@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="myProfile.html">
+            <img  class="navbar-img" src="/assets/img/person-circle.svg" alt="Bootstrap" width="32" height="32">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto navbar-text">
+                <li class="nav-item">
+                    <a class="nav-link" href=""> Prihlásiť</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Recepty</a>
+                    <ul class="dropdown-menu activeDropdown">
+                        <li><a class="dropdown-item" href="recipePage.html"><div class="nav-dropdown-text">Hlavné jedlo</div></a></li>
+                        <li><a class="dropdown-item" href="#"><div class="nav-dropdown-text">Polievky</div></a></li>
+                        <li><a class="dropdown-item" href="#"><div class="nav-dropdown-text">Dezerty</div></a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Raňajky</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <a class="center-offset" href="homepage.html">
+        <img src="/assets/logo.png" alt="Bootstrap" class = "navbar-logo">
+    </a>
+    <div class="container left-offset nav-timeDisplay">
+        <p class="right-offset"><span id='date-time'></span></p>
+    </div>
+    <script src="/scripts/realTime.js"></script>
+</nav>
+<div class="container-lg navbar-align">
+    <div class="input-group" >
+        <label for="search_text"></label>
+        <input type="search" id="search_text" class="form-control" />
+        <button type="submit" class="btn btn-outline-dark navbar-text">
+            <img src="/assets/img/search.svg" alt="Bootstrap" width="32" height="32">
+            hľadať
+        </button>
+    </div>
+</div>

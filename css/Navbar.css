@@ -23,3 +23,7 @@
 .nav-timeDisplay {
     color: #67ff00;
 }
+.navbar-logo {
+    max-height: 80px;
+    height: 100%;
+}

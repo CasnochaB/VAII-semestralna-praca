@@ -21,3 +21,10 @@ h1 {
 .container-background-white {
     background-image: url("/assets/backgrounds/white.png");
 }
+.row-recipe {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.recipe-card{
+    width: 300px;
+}

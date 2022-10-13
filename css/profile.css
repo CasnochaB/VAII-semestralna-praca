@@ -1,0 +1,11 @@
+.profile-counter {
+    color: #67ff00!important;
+}
+.loc-caption:before {
+    content: attr(title);
+    display: block;
+}
+ul {
+    text-align: center;
+    padding: 0;
+}
