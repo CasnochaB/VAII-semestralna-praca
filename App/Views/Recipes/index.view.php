@@ -13,7 +13,7 @@
 	<?php } ?>
     <?php foreach ($data['data'] as $recipe) { ?>
 		<div class="card recipe-card">
-			<img class="card-img-top fixed-aspect" src="public/assets/recepty/hamburger.png" alt="Card image">
+			<img class="card-img-top fixed-aspect" src="public/assets/recepty/default.png" alt="Card image">
 			<div class="recept">
 				<h4 class="card-title"><?=  $recipe->getTitle() ?></h4>
 				<div>
