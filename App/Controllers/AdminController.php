@@ -28,6 +28,6 @@ class AdminController extends AControllerBase
      */
     public function index(): Response
     {
-        return $this->html();
+        return $this->redirect('?c=home');
     }
 }

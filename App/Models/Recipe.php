@@ -2,13 +2,81 @@
 
 namespace App\Models;
 
+use App\App;
 use App\Core\Model;
 
 class Recipe extends Model
 {
     protected ?int $id = 0;
-    protected ?string $text = "";
     protected ?string $title = "";
+    protected ?string $description = "";
+    protected ?string $text = "";
+    protected ?int $time = 0;
+    protected ?float $rating = 0;
+    protected ?int $id_user = 0;
+
+    /**
+     * @return int|null
+     */
+    public function getIdUser(): ?int
+    {
+        return $this->id_user;
+    }
+
+    /**
+     * @param int|null $id_user
+     */
+    public function setIdUser(?int $id_user): void
+    {
+        $this->id_user = $id_user;
+    }
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string|null $describtion
+     */
+    public function setDescription(?string $describtion): void
+    {
+        $this->description = $describtion;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTime(): ?int
+    {
+        return $this->time;
+    }
+
+    /**
+     * @param int|null $time
+     */
+    public function setTime(?int $time): void
+    {
+        $this->time = $time;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getRating(): ?float
+    {
+        return $this->rating;
+    }
+
+    /**
+     * @param float|null $rating
+     */
+    public function setRating(?float $rating): void
+    {
+        $this->rating = $rating;
+    }
 
     /**
      * @return int|null
@@ -57,4 +125,6 @@ class Recipe extends Model
     {
         $this->title = $title;
     }
+
+
 }

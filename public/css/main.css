@@ -126,7 +126,7 @@ ul {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    max-width: 30%;
 }
 .recipe-icon {
     height: 32px;

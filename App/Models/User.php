@@ -64,5 +64,10 @@ class User extends Model
         $this->password = $password;
     }
 
-
+    public function getRecipeCount() {
+        if (!$this->getId()) {
+            return [];
+        }
+        return Recipe::getAll("recipe_id = ? ",[$this]);
+    }
 }

@@ -36,12 +36,7 @@
 			<ul class="navbar-nav me-auto navbar-text">
 
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Recepty</a>
-					<ul class="dropdown-menu activeDropdown">
-						<li><a class="dropdown-item" href="recipePage.html"><div class="nav-dropdown-text">Hlavné jedlo</div></a></li>
-						<li><a class="dropdown-item" href="#"><div class="nav-dropdown-text">Polievky</div></a></li>
-						<li><a class="dropdown-item" href="#"><div class="nav-dropdown-text">Dezerty</div></a></li>
-					</ul>
+					<a class="nav-link " href="?c=recipes" role="button" >Recepty</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Raňajky</a>
@@ -70,22 +65,25 @@
 	</div>
 </nav>
 
-<div class="offcanvas offcanvas-start text-bg-dark" id="demo">
-	<div class="offcanvas-header">
-		<h1 class="offcanvas-title" style="color: #ff9852!important;"> <?= $auth->getLoggedUserName() ?> </h1>
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-	</div>
-	<div class="offcanvas-body">
-		<a href="?c=recipes"><h2>Moje recepty<span class="badge profile-counter">2</span></h2></a>
-		<a><h2>Obľubené recepty<span class="badge profile-counter">4</span></h2></a>
-		<a><h2>Odoberané</h2></a>
-		<a class="btn btn-primary" href="?c=recipes&a=create">pridaj recept</a>
-		<div class="">
-		</div>
-	</div>
-	<button class="btn btn-primary ">odhlásiť sa</button>
-</div>
 
+<?php if ($auth->isLogged()) { ?>
+	<div class="offcanvas offcanvas-start text-bg-dark" id="demo">
+		<div class="offcanvas-header">
+			<h1 class="offcanvas-title" style="color: #ff9852!important;"> <?= $auth->getLoggedUserName() ?> </h1>
+
+			<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+		</div>
+		<div class="offcanvas-body">
+			<a href="?c=recipes"><h2>Moje recepty<span class="badge profile-counter"></span></h2></a>
+			<a><h2>Obľubené recepty<span class="badge profile-counter">4</span></h2></a>
+			<a><h2>Odoberané</h2></a>
+			<a class="btn btn-primary" href="?c=recipes&a=create">pridaj recept</a>
+			<div class="">
+			</div>
+		</div>
+		<button class="btn btn-primary ">odhlásiť sa</button>
+	</div>
+<?php } ?>
 <!--<div class="modal" id="prihlasitModal">
 	<div class="modal-dialog">
 		<div class="modal-content">

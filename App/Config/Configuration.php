@@ -3,7 +3,6 @@
 namespace App\Config;
 
 use App\Auth\AnyLoginAuthenticator;
-use App\Auth\DummyAuthenticator;
 
 /**
  * Class Configuration
