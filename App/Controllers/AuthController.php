@@ -65,7 +65,7 @@ class AuthController extends AControllerBase
 
                 $user->setLogin($this->request()->getValue('login'));
                 $password = ($this->request()->getValue('password'));
-                //password_hash($password,self::PASSWORD_HASH);
+                $password = password_hash($password,PASSWORD_ARGON2ID);
                 $user->setPassword($password);
                 $user->save();
 

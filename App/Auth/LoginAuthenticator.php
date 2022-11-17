@@ -11,7 +11,7 @@ class LoginAuthenticator extends DummyAuthenticator
         $users = User::getAll();
         foreach ($users as $user) {
             if ($user->getLogin() == $login) {
-                if ($password == $user->getPassword()) {
+                if (password_verify($password,$user->getPassword())) {
                     $_SESSION['user'] = $login;
                     return true;
                 } else {
