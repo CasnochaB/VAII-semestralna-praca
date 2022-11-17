@@ -2,6 +2,8 @@
 
 namespace App\Auth;
 
+use App\Models\User;
+
 class AnyLoginAuthenticator extends DummyAuthenticator
 {
 
@@ -13,4 +15,6 @@ class AnyLoginAuthenticator extends DummyAuthenticator
         }
         return false;
     }
+
+
 }

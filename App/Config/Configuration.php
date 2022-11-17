@@ -3,6 +3,7 @@
 namespace App\Config;
 
 use App\Auth\AnyLoginAuthenticator;
+use App\Auth\LoginAuthenticator;
 
 /**
  * Class Configuration
@@ -25,5 +26,5 @@ class Configuration
 
     public const DEBUG_QUERY = false;
 
-    public const AUTH_CLASS = AnyLoginAuthenticator::class;
+    public const AUTH_CLASS = LoginAuthenticator::class;
 }

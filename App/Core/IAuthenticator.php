@@ -17,6 +17,8 @@ interface IAuthenticator
      */
     function login($userLogin, $pass): bool;
 
+    function register($login,$password,$passwordP) : bool;
+
     /**
      * Perform user login
      * @return void

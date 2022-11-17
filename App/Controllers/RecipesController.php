@@ -63,4 +63,5 @@ class RecipesController extends AControllerBase
 
         return $this->redirect("?c=recipes");
     }
+
 }

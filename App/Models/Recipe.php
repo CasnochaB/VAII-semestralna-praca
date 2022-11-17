@@ -126,5 +126,11 @@ class Recipe extends Model
         $this->title = $title;
     }
 
+    public function deleteRecipes($userId) {
+        $recipes = self::getAll("recipe_id == ?",[$userId]);
+        foreach ($recipes as $recipe) {
+            $recipe->delete();
+        }
+    }
 
 }

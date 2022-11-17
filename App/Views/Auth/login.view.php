@@ -31,19 +31,22 @@ $layout = 'auth';
         </div>
     </div>
 
-	<div class="form-register container border border-4 center-offset"  style="max-width: 450px">
+	<form class="form container border border-4 center-offset" method="post" action='?c=auth&a=register' style="max-width: 450px">
 		<h1>Registrácia</h1>
-		<div class="form-group">
-			<label for="inputMeno"></label><input type="email" class="form-control" id="inputMeno" placeholder="Zadajte login">
+		<div class="text-center text-danger mb-3">
+            <?= @$data['message2'] ?>
 		</div>
 		<div class="form-group">
-			<label for="inputHeslo"></label><input type="password" class="form-control" id="inputHeslo" placeholder="Zadajte Heslo">
+			<input name="login" type="text" class="form-control" id="login" placeholder="Zadajte login" required autofocus>
 		</div>
 		<div class="form-group">
-			<label for="inputHesloPotvrdit"></label><input type="password" class="form-control" id="inputHesloPotvrdit" placeholder="Potvrďte Heslo">
+			<input name="password" type="password" class="form-control" id="password" placeholder="Zadajte Heslo" required>
+		</div>
+		<div class="form-group">
+			<input name="passwordP" type="password" class="form-control" id="passwordP" placeholder="Potvrďte Heslo" required>
 		</div>
 		<button class="btn btn-primary" type="submit" name="submitRegister" style="margin-top: 30px;margin-bottom: 30px"><h2>Zaregistrovať sa</h2></button>
-	</div>
+	</form>
 
 	<div class="spacing"></div>
 </div>
