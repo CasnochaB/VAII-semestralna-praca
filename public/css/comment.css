@@ -1,0 +1,15 @@
+.comment-container {
+    margin-right: 20%;
+    margin-left: auto;
+    border: black;
+}
+.comment-answer {
+    height: 30px;
+    width: 50px;
+}
+.comment-answer:hover {
+    background-color: #ff9852 !important;
+}
+.comment-profile-link:hover {
+    color: #ff9852;
+}
