@@ -6,7 +6,11 @@
 
 
 <div class="container row row-recipe border border-3">
-	<h1><label> </label></h1>
+	<?php if ($auth->isLogged()) { ?>
+		<div class="container center-offset">
+			<a href="?c=recipes&a=create" class="btn btn-primary" style = "background-color: green; width: 40%">Pridať nový recept</a>
+		</div>
+	<?php } ?>
     <?php foreach ($data['data'] as $recipe) { ?>
 		<div class="card recipe-card">
 			<img class="card-img-top fixed-aspect" src="public/assets/recepty/hamburger.png" alt="Card image">
@@ -19,7 +23,7 @@
 				</div>
 				<a href="?c=recipes&a=open&id=<?=$recipe->getId()?>" class="btn btn-primary">Otvoriť recept</a>
 				<?php if($auth->isLogged()) { ?>
-					<a href="?c=recipes&a=update&id=<?=$recipe->getId()?>" class="btn btn-primary">Upraviť </a>
+					<a href="?c=recipes&a=update&id=<?=$recipe->getId()?>" style="background-color: rgba(242,255,111,0.91)" class="btn btn-primary">Upraviť </a>
 					<a href="?c=recipes&a=delete&id=<?=$recipe->getId()?>" style="background-color: red" class="btn btn-primary">Odstrániť </a>
                 <?php }	?>
 			</div>

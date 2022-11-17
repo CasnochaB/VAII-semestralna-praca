@@ -25,8 +25,6 @@
 		<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
 			<img class="" src="public/assets/img/person-circle.svg" alt="Bootstrap" width="32" height="32">
 		</button>
-
-
 		<?php } ?>
 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">

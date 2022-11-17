@@ -17,11 +17,11 @@ $recipe = $data['recipe']
     <div class="row" >
         <div class="col left-offset">
             <img src="public/assets/img/clock-fill.svg" alt="Bootstrap" class="recipe-icon">
-            45min
+            <?= $recipe->getTime()?> min.
         </div>
         <div class="col center-offset">
             <div>
-                hodnotenie
+				hodnotenie: <?= $recipe->getRating()?> z 5
             </div>
         </div>
         <div class="col right-offset">
@@ -29,4 +29,6 @@ $recipe = $data['recipe']
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container border" style="word-spacing: normal; background-color: rgba(240,248,255,0.54)">
+	<p style="">"<?= $recipe->getText() ?>"</p>
+</div>
