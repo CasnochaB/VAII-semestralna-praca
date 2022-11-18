@@ -52,7 +52,7 @@
 
 	</div>
 	-->
-	<script src="public/scripts/realTime.js"></script>
+	<script src="public/js/realTime.js"></script>
 
 	<div class="container left-offset">
         <?php if (!$auth->isLogged()) { ?>

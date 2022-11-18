@@ -37,11 +37,12 @@ class RecipesController extends AControllerBase
     }
 
     public function update() {
-        return $this->html([
+        $recipe = $this->html([
             'recipe' => Recipe::getOne($this->request()->getValue('id'))
         ],
             'recipe.form'
         );
+        return $recipe;
     }
 
     public function store() {
@@ -52,9 +53,10 @@ class RecipesController extends AControllerBase
         $recipe->setTime($this->request()->getValue("time"));
         $recipe->setDescription($this->request()->getValue("description"));
         $recipe->setText($this->request()->getValue("text"));
+        $recipe->setIdUser($this->app->getAuth()->getLoggedUserId());
         $recipe->save();
 
-        return $this->redirect("?c=recipes");
+        return $this->redirect("?c=admin");
     }
 
     public function delete() {
