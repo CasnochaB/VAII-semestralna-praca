@@ -22,7 +22,7 @@
 		</div>
 		<div class="carousel-inner ">
 			<div class="carousel-item active">
-				<a class="nav-link" href="public/html/recipe.html">
+				<a class="nav-link" href="#">
 					<img class="d-block w-100 fixed-aspect" src="public/assets/recepty/pizza.png" alt="First slide">
 				</a>
 			</div>

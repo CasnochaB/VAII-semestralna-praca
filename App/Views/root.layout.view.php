@@ -79,7 +79,7 @@
 			<div class="">
 			</div>
 		</div>
-		<button class="btn btn-primary ">odhlásiť sa</button>
+		<a class="btn btn-primary" href="?c=auth&a=logout" >odhlásiť sa</a>
 	</div>
 <?php } ?>
 <!--<div class="modal" id="prihlasitModal">
