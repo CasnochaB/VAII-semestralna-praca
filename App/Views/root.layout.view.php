@@ -72,7 +72,7 @@
 			<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
 		</div>
 		<div class="offcanvas-body">
-			<a href="?c=recipes"><h2>Moje recepty<span class="badge profile-counter"></span></h2></a>
+			<a href="?c=admin"><h2>Moje recepty<span class="badge profile-counter"></span></h2></a>
 			<a><h2>Obľubené recepty<span class="badge profile-counter">4</span></h2></a>
 			<a><h2>Odoberané</h2></a>
 			<a class="btn btn-primary" href="?c=recipes&a=create">pridaj recept</a>

@@ -21,4 +21,11 @@ class LoginAuthenticator extends DummyAuthenticator
         }
         return false;
     }
+
+    public function getLoggedUserId(): mixed
+    {
+        $login = $_SESSION['user'];
+        $user = User::getAll("login = ?",[$login]);
+        return $user[0]->getId();
+    }
 }

@@ -22,7 +22,8 @@
 						<?= $recipe->getTime() ?> min.
 				</div>
 				<a href="?c=recipes&a=open&id=<?=$recipe->getId()?>" class="btn btn-primary">Otvoriť recept</a>
-				<?php if($auth->isLogged()) { ?>
+
+				<?php if($auth->isLogged() && $auth->getLoggedUserId() == $recipe->getIdUser()) { ?>
 					<a href="?c=recipes&a=update&id=<?=$recipe->getId()?>" style="background-color: rgba(242,255,111,0.91)" class="btn btn-primary">Upraviť </a>
 					<a href="?c=recipes&a=delete&id=<?=$recipe->getId()?>" style="background-color: red" class="btn btn-primary">Odstrániť </a>
                 <?php }	?>

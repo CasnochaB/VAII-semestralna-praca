@@ -15,7 +15,7 @@ $recipe = $data['recipe'];
                 <input type="hidden" value="<?= $recipe->getId() ?>" name="id">
                 <div class="mb-3">
                     <label for="title" class="form-label">Názov:</label>
-                    <input type="text" class="form-control" id="title" name="title" aria-describedby="title" value="<?= $recipe->getTitle() ?>">
+                    <input type="text" class="form-control" id="title" name="title" aria-describedby="title" required value="<?= $recipe->getTitle() ?>">
                 </div>
 				<div class="mb-3">
 					<label for="time">Čas prípravy(min):</label>
@@ -23,11 +23,11 @@ $recipe = $data['recipe'];
 				</div>
 				<div class="mb-3">
 					<label for="description">Krátky opis:</label>
-					<textarea class="form-control" id="description" name="description" style="height: 100px"><?= $recipe->getDescription() ?></textarea>
+					<textarea class="form-control" id="description" name="description" style="height: 100px" required><?= $recipe->getDescription() ?></textarea>
 				</div>
                 <div class="mb-3">
                     <label for="text">Obsah:</label>
-                    <textarea class="form-control" id="text" name="text" style="height: 200px"><?= $recipe->getText() ?></textarea>
+                    <textarea class="form-control" id="text" name="text" style="height: 200px" required><?= $recipe->getText() ?></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Odoslať recept</button>
             </form>
