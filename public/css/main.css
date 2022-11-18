@@ -47,6 +47,8 @@ body {
 }
 .navbar-nav .nav-item .nav-link {
     color: rgb(234, 90, 0);
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    font-size: 16px;
 }
 
 .navbar-nav .nav-item:hover .nav-link {
@@ -95,7 +97,7 @@ body {
     margin-top: 20px;
 }
 .bg-navbar {
-    background-color: rgba(133, 104, 104, 0.66);
+    background-color: rgba(133, 104, 104, 0.9);
 }
 .center-offset {
     text-align: center;
