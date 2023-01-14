@@ -4,7 +4,9 @@ namespace App\Controllers;
 
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
+use App\Models\Like;
 use App\Models\Recipe;
+use App\Models\User;
 
 class RecipesController extends AControllerBase
 {
@@ -63,7 +65,33 @@ class RecipesController extends AControllerBase
         $recipe = Recipe::getOne($this->request()->getValue('id'));
         $recipe->delete();
 
+        return $this->redirect("?c=admin");
+    }
+
+    public function like() : Response {
+
+        $recipeId = $this->request()->getValue('id');
+        $likes = Like::getAll("id_recipe = ? && id_user= ?", [$recipeId, $this->app->getAuth()->getLoggedUserId()]);
+        if (count($likes) == 0) {
+            $like = new Like();
+            $like->setIdUser($this->app->getAuth()->getLoggedUserId());
+            $like->setIdRecipe($this->request()->getValue('id'));
+            $like->save();
+        } else if (count($likes) == 1) {
+            $likes[0]->delete();
+        } else {
+            throw new \Exception("One post can't have more than one like from the same user.");
+        }
+
         return $this->redirect("?c=recipes");
     }
 
+    public function favorite() : Response {
+        $userId = $this->request()->getValue('id');
+        return $this->html([
+            'data' => Like::getAll("id_user = ?",[$userId])
+        ],
+            'recipe.favorite'
+        );
+    }
 }

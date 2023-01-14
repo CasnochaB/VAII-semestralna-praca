@@ -59,4 +59,5 @@ class User extends Model
         $this->password = $password;
     }
 
+
 }

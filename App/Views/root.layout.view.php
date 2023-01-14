@@ -36,12 +36,18 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link " href="?c=recipes" role="button" >Recepty</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Raňajky</a>
+                <?php if ($auth->isLogged()) { ?>
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="?c=admin"> Moje recepty</a>
 				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="?c=recipes&a=favorite&id=<?=$auth->getLoggedUserId()?>"> Obľúbené</a>
+				</li>
+                <?php } ?>
 			</ul>
 		</div>
 	</div>
+
 	<a class="center-offset" href="?c=home">
 		<img src="public/assets/logo.png" alt="Bootstrap" class = "navbar-logo">
 		<p class="center-offset"><span id='date-time'></span></p>
@@ -72,7 +78,7 @@
 			<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
 		</div>
 		<div class="offcanvas-body">
-			<a href="?c=admin"><h2>Moje recepty<span class="badge profile-counter"></span></h2></a>
+
 			<a><h2>Obľubené recepty<span class="badge profile-counter">4</span></h2></a>
 			<a><h2>Odoberané</h2></a>
 			<a class="btn btn-primary" href="?c=recipes&a=create">pridaj recept</a>

@@ -127,10 +127,19 @@ class Recipe extends Model
     }
 
     public function deleteRecipes($userId) {
-        $recipes = self::getAll("recipe_id == ?",[$userId]);
+        $recipes = self::getAll("id_user == ?",[$userId]);
         foreach ($recipes as $recipe) {
             $recipe->delete();
         }
     }
 
+
+    public function isLiked($userID,$recipeID) : ?bool {
+        $like = Like::getAll("id_user = ? && id_recipe = ?",[$userID,$recipeID]);
+        if (count($like) == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

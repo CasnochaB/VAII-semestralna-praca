@@ -77,4 +77,7 @@ class AuthController extends AControllerBase
         $data = ($registered === false ? ['message2' => 'Login už existuje,alebo hesla nie su zhodné'] : []);
         return $this->html($data,'login');
     }
+
+
+
 }
