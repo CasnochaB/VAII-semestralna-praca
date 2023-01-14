@@ -161,4 +161,9 @@ ul {
 .navbar-brand img {
     width: 50px;
 }
-
+.center-div {
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}

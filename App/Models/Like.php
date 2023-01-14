@@ -61,9 +61,17 @@ class Like extends Model
     }
 
 
-    public function deleteLikes($userID)
+    public function deleteUserLikes($userID)
     {
         $likes = self::getAll("id_user = ?",[$userID]);
+        foreach ($likes as $like) {
+            $like->delete();
+        }
+    }
+
+    public function deleteRecipeLikes($recipeID)
+    {
+        $likes = self::getAll("id_recipe = ?",[$recipeID]);
         foreach ($likes as $like) {
             $like->delete();
         }

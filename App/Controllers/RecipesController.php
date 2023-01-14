@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
+use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Recipe;
 use App\Models\User;
@@ -32,7 +33,8 @@ class RecipesController extends AControllerBase
 
     public function open() {
         return $this->html([
-            'recipe' => Recipe::getOne($this->request()->getValue('id'))
+            'recipe' => Recipe::getOne($this->request()->getValue('id')),
+            'comments' => Comment::getAll("id_recipe = ?",[$this->request()->getValue('id')])
         ],
         'recipe.page'
         );
@@ -84,6 +86,22 @@ class RecipesController extends AControllerBase
         }
 
         return $this->redirect("?c=recipes");
+    }
+
+    public function comment() {
+        $recipeId = $this->request()->getValue("id");
+        $comment = new Comment();
+        $comment->setIdRecipe($recipeId);
+        $comment->setIdUser($this->app->getAuth()->getLoggedUserId());
+        $comment->setText($this->request()->getValue("text"));
+        $comment->save();
+
+        return $this->html([
+            'recipe' => Recipe::getOne($recipeId),
+            'comments' => Comment::getAll("id_recipe = ?",[$this->request()->getValue('id')])
+        ],
+            'recipe.page'
+        );
     }
 
     public function favorite() : Response {

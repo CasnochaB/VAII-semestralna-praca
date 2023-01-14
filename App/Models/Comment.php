@@ -7,8 +7,26 @@ use App\Core\Model;
 class Comment extends Model
 {
     protected ?int $id;
-    protected ?int $recipe_id;
+    protected ?int $id_user;
+    protected ?int $id_recipe;
     protected ?string $text;
+
+    /**
+     * @return int|null
+     */
+    public function getIdUser(): ?int
+    {
+        return $this->id_user;
+    }
+
+    /**
+     * @param int|null $id_user
+     */
+    public function setIdUser(?int $id_user): void
+    {
+        $this->id_user = $id_user;
+    }
+
 
     /**
      * @return int|null
@@ -29,17 +47,17 @@ class Comment extends Model
     /**
      * @return int|null
      */
-    public function getRecipeId(): ?int
+    public function getIdRecipe(): ?int
     {
-        return $this->recipe_id;
+        return $this->id_recipe;
     }
 
     /**
-     * @param int|null $recipe_id
+     * @param int|null $id_recipe
      */
-    public function setRecipeId(?int $recipe_id): void
+    public function setIdRecipe(?int $id_recipe): void
     {
-        $this->recipe_id = $recipe_id;
+        $this->id_recipe = $id_recipe;
     }
 
     /**
@@ -58,9 +76,18 @@ class Comment extends Model
         $this->text = $text;
     }
 
-    public function deleteComments($userID)
+    public function deleteUserComments($userID)
     {
-        $comments = self::getAll("id = ?",[$userID]);
+        $comments = self::getAll("id_user = ?",[$userID]);
+        foreach ($comments as $comment) {
+            $comment->delete();
+        }
+    }
+
+
+    public function deleteRecipeComments($recipeID)
+    {
+        $comments = self::getAll("id_recipe = ?",[$recipeID]);
         foreach ($comments as $comment) {
             $comment->delete();
         }
