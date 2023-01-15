@@ -35,7 +35,6 @@ class RecipesController extends AControllerBase
     public function open() {
         return $this->html([
             'recipe' => Recipe::getOne($this->request()->getValue('id')),
-            'comments' => Comment::getAll("id_recipe = ?",[$this->request()->getValue('id')])
         ],
         'recipe.page'
         );
@@ -143,5 +142,13 @@ class RecipesController extends AControllerBase
 
     public function deleteComment() {
 
+        $commentID = $this->request()->getValue('idc');
+        $comment = Comment::getOne($commentID);
+        $comment->delete();
+        return $this->html([
+            'recipe' => Recipe::getOne($this->request()->getValue('idr')),
+        ],
+            'recipe.page'
+        );
     }
 }

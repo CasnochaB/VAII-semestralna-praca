@@ -4,9 +4,6 @@
 use App\Models\Recipe;
 /** @var Recipe $recipe */
 $recipe = $data['recipe'];
-/** @var \App\Models\Comment $comments */
-$comments = $data['comments'];
-/** @var \App\Models\Comment $comment */
 ?>
 
 <script>var recipeID = "<?php Print($recipe->getId()) ?>"; </script>

@@ -31,7 +31,8 @@ class CommentAjax{
                         ${comment.text}
                         `;
                 if (comment.creator.id === loggedUserID) {
-                    html += `<button id="delete-comment" class="btn btn-primary" style="float: right; height: 30px;text-align: center">zmazať   </button>
+                    html += `<a id="delete-comment" href="?c=recipes&a=deleteComment&idc=`+comment.id+`&idr=`+recipeID+`"`;
+                    html += `class="btn btn-primary" style="float: right; height: 30px;text-align: center">zmazať   </a>
                         `;
                 }
                 html += `<hr>
