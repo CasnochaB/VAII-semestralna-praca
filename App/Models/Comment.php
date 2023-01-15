@@ -11,6 +11,8 @@ class Comment extends Model
     protected ?int $id_recipe;
     protected ?string $text;
 
+    protected ?User $creator = null;
+    protected ?Recipe $recipe = null;
     /**
      * @return int|null
      */
@@ -92,4 +94,16 @@ class Comment extends Model
             $comment->delete();
         }
     }
+
+    public function loadUser()
+    {
+        $this->creator = ($this->id_user == null) ? null : User::getOne($this->id_user);
+    }
+
+    public function loadRecipe()
+    {
+        $this->recipe = ($this->id_recipe == null) ? null : Recipe::getOne($this->id_recipe);
+    }
+
+
 }

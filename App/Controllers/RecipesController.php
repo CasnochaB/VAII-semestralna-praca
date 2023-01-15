@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\AControllerBase;
+use App\Core\Responses\JsonResponse;
 use App\Core\Responses\Response;
 use App\Models\Comment;
 use App\Models\Like;
@@ -89,7 +90,23 @@ class RecipesController extends AControllerBase
     }
 
     public function comment() {
-        $recipeId = $this->request()->getValue("id");
+
+        $data = json_decode(file_get_contents('php://input'));
+
+        $comment = new Comment();
+        $comment->setText($data->text);
+        $comment->setIdUser($this->app->getAuth()->getLoggedUserId());
+        $comment->setIdRecipe($data->recipe);
+
+//        $message = new Message($data->message, $this->app->getAuth()->getLoggedUserId(), $userToId);
+//        $message->save();
+
+        $comment->save();
+
+        return $this->json('ok');
+
+
+        /*$recipeId = $this->request()->getValue("id");
         $comment = new Comment();
         $comment->setIdRecipe($recipeId);
         $comment->setIdUser($this->app->getAuth()->getLoggedUserId());
@@ -101,7 +118,7 @@ class RecipesController extends AControllerBase
             'comments' => Comment::getAll("id_recipe = ?",[$this->request()->getValue('id')])
         ],
             'recipe.page'
-        );
+        );*/
     }
 
     public function favorite() : Response {
@@ -111,5 +128,20 @@ class RecipesController extends AControllerBase
         ],
             'recipe.favorite'
         );
+    }
+
+    public function getComments() :JsonResponse
+    {
+        $recipeID = $this->request()->getValue('id');
+        $comments = Comment::getAll('id_recipe = ?',[$recipeID],'id DESC');
+        array_map(function ($comment) {
+            $comment->loadUser();
+        }, $comments);
+
+        return $this->json($comments);
+    }
+
+    public function deleteComment() {
+
     }
 }

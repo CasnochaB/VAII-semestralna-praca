@@ -24,18 +24,20 @@
 					</div>
 				</div>
 
-                <?php if($recipe->getIdUser() != $auth->getLoggedUserId()) { ?>
-				<div class="center-offset" style="width: 40%;margin-top: 5%; float: right">
-					<a href="?c=recipes&a=like&id=<?= $recipe->getId() ?>">
-					<img style="width: 50%"
-					 <?php if($recipe->isLiked($auth->getLoggedUserId(),$recipe->getId())) { ?>
-						 src="public/assets/img/heart.svg"
-					 <?php } else { ?>
-						 src="public/assets/img/heart-fill.svg"
-					 <?php } ?>
-					>
-					</a>
-				</div>
+                <?php if ($auth->isLogged()) { ?>
+             	   <?php if($recipe->getIdUser() != $auth->getLoggedUserId()) { ?>
+						<div class="center-offset" style="width: 40%;margin-top: 5%; float: right">
+							<a href="?c=recipes&a=like&id=<?= $recipe->getId() ?>">
+								<img style="width: 50%"
+								<?php if($recipe->isLiked($auth->getLoggedUserId(),$recipe->getId())) { ?>
+									 src="public/assets/img/heart.svg"
+								<?php } else { ?>
+									 src="public/assets/img/heart-fill.svg"
+								<?php }  ?>
+									>
+							</a>
+						</div>
+					<?php } ?>
                 <?php } ?>
 			</div>
 
