@@ -21,9 +21,9 @@
 <nav class="navbar navbar-expand-sm bg-navbar">
 	<div class="container-fluid">
         <?php if ($auth->isLogged()) { ?>
-		<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+		<a class="btn" href="?c=admin" type="button" >
 			<img class="" src="public/assets/img/person-circle.svg" alt="Bootstrap" width="32" height="32">
-		</button>
+		</a>
 		<?php } ?>
 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -37,7 +37,7 @@
 				</li>
                 <?php if ($auth->isLogged()) { ?>
 				<li class="nav-item dropdown">
-					<a class="nav-link" href="?c=admin"> Moje recepty</a>
+					<a class="nav-link" href="?c=admin&a=recipes"> Moje recepty</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link" href="?c=recipes&a=favorite&id=<?=$auth->getLoggedUserId()?>"> Obľúbené</a>

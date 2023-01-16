@@ -19,6 +19,14 @@ abstract class Model implements \JsonSerializable
     private static ?array $dbColumns = null;
 
     /**
+     * @param array|null $dbColumns
+     */
+    public static function setDbColumns(?array $dbColumns): void
+    {
+        self::$dbColumns = $dbColumns;
+    }
+
+    /**
      * Get array of column names from the associated model table
      * @return array
      * @throws \Exception

@@ -21,32 +21,6 @@
 	<button class="btn btn-primary ">odhlásiť sa</button>
 </div>-->
 
-<div class="container row row-recipe border border-3">
-	<div class="container center-offset">
-		<a href="?c=recipes&a=create" class="btn btn-primary" style = "background-color: green; width: 40%">Pridať nový recept</a>
-	</div>
-    <?php foreach ($data['data'] as $recipe) {
-		if ($recipe->getIdUser() == $auth->getLoggedUserId()) {
-		?>
-			<div class="card recipe-card">
-				<img class="card-img-top fixed-aspect" src="public/assets/recepty/default.png" alt="Card image">
-				<div class="recept">
-					<h4 class="card-title"><?=  $recipe->getTitle() ?></h4>
-					<div>
-						<p class="card-text"> <?= $recipe->getDescription() ?> </p>
-						<img class="recipe-icon" src="public/assets/img/clock.svg" alt="icon" style="margin-bottom: 10px">
-                        <?= $recipe->getTime() ?> min.
-					</div>
-					<a href="?c=recipes&a=open&id=<?=$recipe->getId()?>" class="btn btn-primary">Otvoriť recept</a>
-
-                    <?php if($auth->isLogged() && $auth->getLoggedUserId() == $recipe->getIdUser()) { ?>
-						<a href="?c=recipes&a=update&id=<?=$recipe->getId()?>" style="background-color: rgba(242,255,111,0.91)" class="btn btn-primary">Upraviť </a>
-						<a href="?c=recipes&a=delete&id=<?=$recipe->getId()?>" style="background-color: red" class="btn btn-primary">Odstrániť </a>
-                    <?php }	?>
-				</div>
-			</div>
-	<?php } }	?>
-
 <!--
 	<div class="card recipe-card">
 		<img class="card-img-top fixed-aspect" src="/assets/recepty/hamburger.png" alt="Card image">
@@ -96,4 +70,28 @@
 		</div>
 	</div>-->
 
+<div class="container spacing">
+	<div class="container">
+	<h1 class="center-offset">Môj profil</h1>
+
+	<h2>počet komentárov: <?=$data['commentsCount'] ?></h2>
+	<h2><a href="?c=admin&a=comments">história komentárov </a></h2>
+
+	<h2>počet uverejnených receptov: <?=$data['recipesCount']?></h2>
+	<h2><a href="?c=admin&a=recipes">moje recepty</a></h2>
+
+		<div style="width: 100%; height: 50px">
+	<h2 style="float: left" data-bs-toggle="tooltip" title="Súčet like-ov na všetkých vašich receptoch">rating užívateľa: <?=$data['ratingCount'] ?> </h2>
+		</div>
+	</div>
+
+	<hr>
+
 </div>
+
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>

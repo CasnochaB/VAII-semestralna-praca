@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
+use App\Models\Comment;
 use App\Models\Recipe;
 
 /**
@@ -29,8 +30,30 @@ class AdminController extends AControllerBase
      */
     public function index(): Response
     {
+        $recipes = Recipe::getAll("id_user = ?",[$this->app->getAuth()->getLoggedUserId()]);
+        $rating = 0;
+        foreach ($recipes as $recipe) {
+            $rating+=$recipe->getRating();
+        }
         return $this->html([
-                'data' => Recipe::getAll("id_user = ?",[$this->app->getAuth()->getLoggedUserId()])
+            'commentsCount' => count(Comment::getAll("id_user = ?",[$this->app->getAuth()->getLoggedUserId()])),
+            'recipesCount' => count($recipes),
+            'ratingCount' => $rating
             ]);
+    }
+
+    public function recipes(): Response
+    {
+        return $this->html([
+            'data' => Recipe::getAll("id_user = ?",[$this->app->getAuth()->getLoggedUserId()])
+        ],'user.recipes');
+    }
+
+
+    public function comments(): Response
+    {
+        return $this->html([
+            'comments' => Comment::getAll("id_user = ?",[$this->app->getAuth()->getLoggedUserId()])
+        ],'user.comments');
     }
 }

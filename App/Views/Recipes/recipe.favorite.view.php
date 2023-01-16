@@ -6,13 +6,14 @@
 ?>
 
 
-<div class="container row row-recipe border border-3">
+<div class="container row row-recipe">
     <?php /*if ($auth->isLogged()) { */?><!--
 		<div class="container center-offset">
 			<a href="?c=recipes&a=create" class="btn btn-primary" style = "background-color: green; width: 40%">Pridať nový recept</a>
 		</div>
 	--><?php /*} */?>
-    <?php foreach ($data['data'] as $like) { $recipe = $like->getAssociatedRecipe() ?>
+    <?php if (count($data['data']) > 0) {
+		foreach ($data['data'] as $like) { $recipe = $like->getAssociatedRecipe() ?>
         <div class="card recipe-card">
             <img class="card-img-top fixed-aspect" src="public/assets/recepty/default.png" alt="Card image">
             <div>
@@ -44,5 +45,6 @@
                 <?php }	?>
             </div>
         </div>
-    <?php }	?>
-
+    <?php }} else {	?>
+	<h1> Zatiaľ nemáte žiadne obľúbené recepty</h1>
+<?php }  ?>

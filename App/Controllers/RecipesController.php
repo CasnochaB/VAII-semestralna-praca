@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\AControllerBase;
+use App\Core\Model;
 use App\Core\Responses\JsonResponse;
 use App\Core\Responses\Response;
 use App\Models\Comment;
@@ -74,17 +75,22 @@ class RecipesController extends AControllerBase
 
         $recipeId = $this->request()->getValue('id');
         $likes = Like::getAll("id_recipe = ? && id_user= ?", [$recipeId, $this->app->getAuth()->getLoggedUserId()]);
+        $recipe = Recipe::getOne($recipeId);
+
         if (count($likes) == 0) {
             $like = new Like();
             $like->setIdUser($this->app->getAuth()->getLoggedUserId());
             $like->setIdRecipe($this->request()->getValue('id'));
             $like->save();
+            $recipe->setRating($recipe->getRating()+1);
+            Model::setDbColumns(['id','rating']);
         } else if (count($likes) == 1) {
             $likes[0]->delete();
+            $recipe->setRating($recipe->getRating()-1);
         } else {
-            throw new \Exception("One post can't have more than one like from the same user.");
+            throw new \Exception("One recipe can't have more than one like from the same user.");
         }
-
+        $recipe->save();
         return $this->redirect("?c=recipes");
     }
 

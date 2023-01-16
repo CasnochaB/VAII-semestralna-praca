@@ -142,4 +142,11 @@ class Recipe extends Model
             return false;
         }
     }
+
+    public static function getTableName(): string
+    {
+        return "recipes";
+    }
+
+
 }

@@ -105,5 +105,9 @@ class Comment extends Model
         $this->recipe = ($this->id_recipe == null) ? null : Recipe::getOne($this->id_recipe);
     }
 
+    public function getAssociatedRecipe($recipeID): ?Recipe
+    {
+        return Recipe::getOne($recipeID);
+    }
 
 }
