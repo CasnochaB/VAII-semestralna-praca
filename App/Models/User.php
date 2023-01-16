@@ -9,7 +9,25 @@ class User extends Model
 {
     protected ?int $id = 0;
     protected ?string $login = "";
+    protected ?string $username = "";
     protected ?string $password = "";
+
+    /**
+     * @return string|null
+     */
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string|null $username
+     */
+    public function setUsername(?string $username): void
+    {
+        $this->username = $username;
+    }
+
 
     /**
      * @return int|null
@@ -58,6 +76,4 @@ class User extends Model
     {
         $this->password = $password;
     }
-
-
 }

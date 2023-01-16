@@ -30,6 +30,17 @@ class AdminController extends AControllerBase
      */
     public function index(): Response
     {
+        $option = $this->request()->getValue('m');
+        $message = "";
+        if ($option == '1') {
+            $message = "Zle heslo";
+        } else if ($option == '2') {
+            $message = "Hesla sa nezhodujú";
+        } else if ($option == '3') {
+            $message = "Heslo úspešne zmenené";
+        } else if ($option == '4') {
+            $message = "Nove heslo musí mať aspoň 5 znakov";
+        }
         $recipes = Recipe::getAll("id_user = ?",[$this->app->getAuth()->getLoggedUserId()]);
         $rating = 0;
         foreach ($recipes as $recipe) {
@@ -38,7 +49,8 @@ class AdminController extends AControllerBase
         return $this->html([
             'commentsCount' => count(Comment::getAll("id_user = ?",[$this->app->getAuth()->getLoggedUserId()])),
             'recipesCount' => count($recipes),
-            'ratingCount' => $rating
+            'ratingCount' => $rating,
+            'message' => $message
             ]);
     }
 
@@ -53,7 +65,15 @@ class AdminController extends AControllerBase
     public function comments(): Response
     {
         return $this->html([
-            'comments' => Comment::getAll("id_user = ?",[$this->app->getAuth()->getLoggedUserId()])
+            'comments' => Comment::getAll("id_user = ?",[$this->app->getAuth()->getLoggedUserId()],"id DESC")
         ],'user.comments');
+    }
+
+    public function deleteComment(): Response
+    {
+        $commentID = $this->request()->getValue('id');
+        $comment = Comment::getOne($commentID);
+        $comment->delete();
+        return $this->comments();
     }
 }

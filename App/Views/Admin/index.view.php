@@ -4,76 +4,11 @@
 /** @var \App\Models\Recipe $recipe */
 ?>
 
-<!--<div class="offcanvas offcanvas-start text-bg-dark" id="demo">
-	<div class="offcanvas-header">
-		<h1 class="offcanvas-title" style="color: #ff9852!important;">Meno Profilu</h1>
-		<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-	</div>
-	<div class="offcanvas-body">
-		<a><h2>Moje recepty<span class="badge profile-counter">2</span></h2></a>
-		<a><h2>Obľubené recepty<span class="badge profile-counter">4</span></h2></a>
-		<a><h2>Odoberané</h2></a>
-		<a class="btn btn-primary" href="?c=recipes&a=create">pridaj recept</a>
-		<div class="">
-		</div>
-	</div>
-
-	<button class="btn btn-primary ">odhlásiť sa</button>
-</div>-->
-
-<!--
-	<div class="card recipe-card">
-		<img class="card-img-top fixed-aspect" src="/assets/recepty/hamburger.png" alt="Card image">
-		<div class="recept">
-			<h4 class="card-title">Hamburger</h4>
-			<div>
-				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer iaculis ac leo in mollis. Phasellus.</p>
-				<img class="recipe-icon" src="/assets/img/clock.svg" alt="icon" style="margin-bottom: 10px"> 25min.
-			</div>
-			<a href="#" class="btn btn-primary">Otvoriť recept</a>
-		</div>
-	</div>
-
-	<div class="card recipe-card">
-		<img class="card-img-top fixed-aspect" src="/assets/recepty/hamburger.png" alt="Card image">
-		<div class="recept">
-			<h4 class="card-title">Hamburger</h4>
-			<div>
-				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer iaculis ac leo in mollis. Phasellus.</p>
-				<img class="recipe-icon" src="/assets/img/clock.svg" alt="icon" style="margin-bottom: 10px"> 25min.
-			</div>
-			<a href="#" class="btn btn-primary">Otvoriť recept</a>
-		</div>
-	</div>
-
-	<div class="card recipe-card">
-		<img class="card-img-top fixed-aspect" src="/assets/recepty/hamburger.png" alt="Card image">
-		<div class="recept">
-			<h4 class="card-title">Hamburger</h4>
-			<div>
-				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer iaculis ac leo in mollis. Phasellus.</p>
-				<img class="recipe-icon" src="/assets/img/clock.svg" alt="icon" style="margin-bottom: 10px"> 25min.
-			</div>
-			<a href="#" class="btn btn-primary">Otvoriť recept</a>
-		</div>
-	</div>
-
-	<div class="card recipe-card">
-		<img class="card-img-top fixed-aspect" src="/assets/recepty/pizza.png" alt="Card image">
-		<div class="recept">
-			<h4 class="card-title">Šunková pizza</h4>
-			<div>
-				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer iaculis ac leo in mollis. Phasellus.</p>
-				<img class="recipe-icon" src="/assets/img/clock.svg" alt="icon" style="margin-bottom: 10px"> 45min.
-			</div>
-			<a href="recipe.html" class="btn btn-primary">Otvoriť recept</a>
-		</div>
-	</div>-->
-
 <div class="container spacing">
 	<div class="container">
 	<h1 class="center-offset">Môj profil</h1>
-
+	<h2>prihlásený: <?=$auth->getLoggedUserName()?></h2>
+		<hr>
 	<h2>počet komentárov: <?=$data['commentsCount'] ?></h2>
 	<h2><a href="?c=admin&a=comments">história komentárov </a></h2>
 
@@ -87,11 +22,54 @@
 
 	<hr>
 
-</div>
+	<div class="container">
+		<h1>Zmena hesla:</h1>
+		<p class="text-danger center-offset"><?=$data['message']?></p>
+		<form class="form-singin  container border border-4 center-offset" method="post" action='?c=auth&a=resetPassword' style="max-width: 450px">
+			<div class="center-offset">
+				<div class="form-group mb-3">
+					<input class="form-control" type="password" name="oldP" style="margin: 5px" placeholder="Stare heslo" required> <br>
+				</div>
+				<div class="form-group mb-3">
+					<input class="form-control" type="password" name="newP" style="margin: 5px" placeholder="Nove heslo" required minlength="5"> <br>
+				</div>
+				<div class="form-group mb-3">
+					<input class="form-control" type="password" name="conP" style="margin: 5px" placeholder="Potvrdit nove heslo" required minlength="5"> <br>
+				</div>
+				<button class="btn btn-primary" type="submit" id="resetPassword" name="resetPassword"> potvrdit</button>
+			</div>
+		</form>
+	</div>
+	<div class="spacing">
+	</div>
+	<BUTTON class="btn btn-danger" id="BigNoNoButton" data-bs-toggle="modal" data-bs-target="#deleteModal">
+		<h4>Odstrániť účet</h4>
+	</BUTTON>
 
-<script>
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-</script>
+	<div class="modal" id="deleteModal">
+		<div class="modal-dialog">
+			<div class="modal-content center-offset">
+
+				<!-- Modal Header -->
+				<div class="modal-header" >
+					<h4 class="modal-title">Ste si istý že chcete odstániť svoj účet?</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					túto akciu nie je možné vrátiť spät!
+				</div>
+
+				<hr>
+
+				<div>
+					<a class="btn btn-danger" href="?c=auth&a=deleteAccount" style="float: left;margin: 10px">Odstrániť účet</a>
+					<button type="button" class="btn btn-success" style="float: right;margin: 10px" data-bs-dismiss="modal">Zavrieť</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="spacing"></div>
+</div>

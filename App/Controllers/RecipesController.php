@@ -103,27 +103,10 @@ class RecipesController extends AControllerBase
         $comment->setIdUser($this->app->getAuth()->getLoggedUserId());
         $comment->setIdRecipe($data->recipe);
 
-//        $message = new Message($data->message, $this->app->getAuth()->getLoggedUserId(), $userToId);
-//        $message->save();
-
         $comment->save();
 
         return $this->json('ok');
 
-
-        /*$recipeId = $this->request()->getValue("id");
-        $comment = new Comment();
-        $comment->setIdRecipe($recipeId);
-        $comment->setIdUser($this->app->getAuth()->getLoggedUserId());
-        $comment->setText($this->request()->getValue("text"));
-        $comment->save();
-
-        return $this->html([
-            'recipe' => Recipe::getOne($recipeId),
-            'comments' => Comment::getAll("id_recipe = ?",[$this->request()->getValue('id')])
-        ],
-            'recipe.page'
-        );*/
     }
 
     public function favorite() : Response {

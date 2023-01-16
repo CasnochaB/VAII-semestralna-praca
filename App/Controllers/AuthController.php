@@ -43,6 +43,10 @@ class AuthController extends AControllerBase
         return $this->html($data);
     }
 
+    public static function hash($password): string
+    {
+        return password_hash($password,PASSWORD_ARGON2ID);
+    }
     /**
      * Logout a user
      * @return \App\Core\Responses\ViewResponse
@@ -57,27 +61,74 @@ class AuthController extends AControllerBase
     {
         $formData = $this->app->getRequest()->getPost();
         $registered = null;
-        if (isset($formData['submitRegister'])) {
-            $registered = $this->app->getAuth()->register($formData['login'], $formData['password'],$formData['passwordP']);
-            if ($registered) {
-                $id = $this->request()->getValue('id');
-                $user = ($id ? User::getOne($id) : New User());
+        $message = "";
+        if (strlen($formData['Rpassword']) < 5 || strlen($formData['RpasswordP']) < 5) {
+            $message = "Heslo musi mať aspon 5 znakov";
+        } else {
+            if (isset($formData['submitRegister'])) {
+                $message = "uspesne registrovany";
+                if (strlen($formData['Rlogin']) < 5) {
+                    $message = "Login musi mat aspon 5 znakov";
+                } else {
+                    if (count(User::getAll('login = ?', [$formData['Rlogin']])) > 0) {
+                        $message = "Login už existuje";
+                    } else {
+                        $registered = $this->app->getAuth()->register($formData['Rlogin'], $formData['Rpassword'], $formData['RpasswordP']);
+                        if ($registered) {
+                            $id = $this->request()->getValue('id');
+                            $user = ($id ? User::getOne($id) : new User());
 
-                $user->setLogin($this->request()->getValue('login'));
-                $password = ($this->request()->getValue('password'));
-                $password = password_hash($password,PASSWORD_ARGON2ID);
-                $user->setPassword($password);
-                $user->save();
+                            $user->setLogin($this->request()->getValue('Rlogin'));
+                            $password = ($this->request()->getValue('Rpassword'));
+                            $password = self::hash($password);
+                            $user->setPassword($password);
+                            $user->save();
 
-                $this->app->getAuth()->login($formData['login'],$formData['password']);
-                return $this->redirect('?c=home');
+                            $this->app->getAuth()->login($formData['Rlogin'], $formData['Rpassword']);
+                            return $this->redirect('?c=home');
+                        } else {
+                            $message = "hesla sa nezhoduju";
+                        }
+                    }
+                }
             }
         }
 
-        $data = ($registered === false ? ['message2' => 'Login už existuje,alebo hesla nie su zhodné'] : []);
-        return $this->html($data,'login');
+        $data = ['message2' => $message];
+        return $this->html($data, 'login');
+
     }
 
+    public function resetPassword(): Response
+    {
+        $data = '0';
+        $formData = $this->app->getRequest()->getPost();
+        if (isset($formData['resetPassword'])) {
+            $data = '3';
+            $userID = $this->app->getAuth()->getLoggedUserId();
+            $user = User::getOne($userID);
+            if (strlen($formData['newP']) < 5 || strlen($formData['conP']) < 5) {
+                $data = '4';
+            } else {
+                if ($formData['newP'] === $formData['conP']) {
+                    if (password_verify(($formData['oldP']), $user->getPassword())) {
+                        $user->setPassword(self::hash($formData['newP']));
+                        $user->save();
+                    } else {
+                        $data = '1';
+                    }
+                } else {
+                    $data = '2';
+                }
+            }
+        }
+        return $this->redirect('?c=admin&m=' . $data);
+    }
 
-
+    public function deleteAccount() : Response
+    {
+        $user = User::getOne($this->app->getAuth()->getLoggedUserId());
+        $user->delete();
+        return $this->logout();
+    }
 }
