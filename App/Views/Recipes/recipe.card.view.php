@@ -1,3 +1,6 @@
+<script>var recipeID = "<?php Print($recipe->getId()) ?>"; </script>
+
+
 
 <div class="card recipe-card">
 			<img class="card-img-top fixed-aspect" src="public/assets/recepty/default.png" alt="Card image">
@@ -12,23 +15,18 @@
         <?= $recipe->getTime() ?> min.
     </div>
     <div class="col container center-offset verc">
-        pači sa: <?=$recipe->getRating()?>
+        pači sa: <div id="likes"> <?=$recipe->getRating()?> </div>
     </div>
 </div>
 </div>
 
+
 <?php if ($auth->isLogged()) { ?>
     <?php if($recipe->getIdUser() != $auth->getLoggedUserId()) { ?>
         <div class="center-offset" style="width: 40%;margin-top: 5%; float: right">
-            <a href="?c=recipes&a=like&id=<?= $recipe->getId() ?>">
-                <img style="width: 50%"
-                    <?php if($recipe->isLiked($auth->getLoggedUserId(),$recipe->getId())) { ?>
-                        src="public/assets/img/heart-fill.svg"
-                    <?php } else { ?>
-                        src="public/assets/img/heart.svg"
-                    <?php }  ?>
-                >
-            </a>
+            <div class="heart" name="<?=$recipe->getId()?>" id="heart<?=$recipe->getId()?>">
+
+			</div>
         </div>
     <?php } ?>
 <?php } ?>

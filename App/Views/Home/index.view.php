@@ -6,7 +6,9 @@ $favorite = $data['favorite'];
 $new = $data['new'];
 $i = 0;
 ?>
-<div class="container-lg navbar-align">
+<script src="public/js/scriptLike.js"></script>
+
+<!--<div class="container-lg navbar-align">
 	<div class="input-group" >
 		<label for="search_text"></label>
 		<input type="search" id="search_text" class="form-control" />
@@ -15,7 +17,7 @@ $i = 0;
 			hľadať
 		</button>
 	</div>
-</div>
+</div>-->
 
 <div class="spacing"></div>
 <div class="container">

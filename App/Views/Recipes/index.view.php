@@ -17,3 +17,5 @@
 
 
 </div>
+
+<script src="public/js/scriptLike.js"></script>

@@ -71,16 +71,17 @@ class RecipesController extends AControllerBase
         return $this->redirect("?c=admin");
     }
 
-    public function like() : Response {
+    public function like() : JsonResponse {
 
-        $recipeId = $this->request()->getValue('id');
-        $likes = Like::getAll("id_recipe = ? && id_user= ?", [$recipeId, $this->app->getAuth()->getLoggedUserId()]);
-        $recipe = Recipe::getOne($recipeId);
+        $data = json_decode(file_get_contents('php://input'));
 
+        $likes = Like::getAll("id_recipe = ? && id_user= ?", [$data->recipe, $this->app->getAuth()->getLoggedUserId()]);
+        $recipe = Recipe::getOne($data->recipe);
+        $like = null;
         if (count($likes) == 0) {
             $like = new Like();
             $like->setIdUser($this->app->getAuth()->getLoggedUserId());
-            $like->setIdRecipe($this->request()->getValue('id'));
+            $like->setIdRecipe($data->recipe);
             $like->save();
             $recipe->setRating($recipe->getRating()+1);
             Model::setDbColumns(['id','rating']);
@@ -91,7 +92,7 @@ class RecipesController extends AControllerBase
             throw new \Exception("One recipe can't have more than one like from the same user.");
         }
         $recipe->save();
-        return $this->redirect("?c=recipes");
+        return $this->json($like);
     }
 
     public function comment() {
@@ -139,5 +140,16 @@ class RecipesController extends AControllerBase
         ],
             'recipe.page'
         );
+    }
+
+    public function getLike() :JsonResponse
+    {
+        $recipeID = $this->request()->getValue('idr');
+        $likes = Like::getAll("id_recipe = ? && id_user= ?", [$recipeID, $this->app->getAuth()->getLoggedUserId()]);
+        $recipe = Recipe::getOne($recipeID);
+        if (count($likes) == 0) {
+            return $this->json([null,$recipe->getRating()]);
+        }
+        return $this->json([$likes[0],$recipe->getRating()]);
     }
 }

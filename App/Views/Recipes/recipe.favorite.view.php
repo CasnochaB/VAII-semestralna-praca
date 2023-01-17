@@ -4,7 +4,7 @@
 /** @var \App\Models\Recipe $recipe */
 /** @var \App\Models\Like $like */
 ?>
-
+<script src="public/js/scriptLike.js"></script>
 
 <div class="container row row-recipe">
     <?php /*if ($auth->isLogged()) { */?><!--

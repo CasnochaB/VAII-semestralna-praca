@@ -10,6 +10,8 @@ class Like extends Model
     protected ?int $id_user;
     protected ?int $id_recipe;
 
+    protected ?User $user;
+    protected ?Recipe $recipe;
     /**
      * @return int|null
      */
@@ -79,6 +81,11 @@ class Like extends Model
 
     public function getAssociatedRecipe() {
         return Recipe::getOne($this->id_recipe);
+    }
+
+    public function loadUser()
+    {
+        $this->user = ($this->id_user == null) ? null : User::getOne($this->id_user);
     }
 
 }
