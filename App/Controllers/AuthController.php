@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Config\Configuration;
 use App\Core\AControllerBase;
+use App\Core\Responses\JsonResponse;
 use App\Core\Responses\Response;
 use App\Models\User;
 
@@ -26,21 +27,19 @@ class AuthController extends AControllerBase
 
     /**
      * Login a user
-     * @return \App\Core\Responses\RedirectResponse|\App\Core\Responses\ViewResponse
+     * @return \App\Core\Responses\RedirectResponse|\App\Core\Responses\JsonResponse
      */
-    public function login(): Response
+    public function login(): JsonResponse
     {
-        $formData = $this->app->getRequest()->getPost();
-        $logged = null;
-        if (isset($formData['submit'])) {
-            $logged = $this->app->getAuth()->login($formData['login'], $formData['password']);
-            if ($logged) {
-                return $this->redirect('?c=home');
-            }
-        }
+        $formData = json_decode(file_get_contents('php://input'));
 
-        $data = ($logged === false ? ['message' => 'Zlý login alebo heslo!'] : []);
-        return $this->html($data);
+        $logged = $this->app->getAuth()->login($formData->login, $formData->password);
+        $data[0] = "Zly login alebo heslo!";
+        if ($logged) {
+            $data[0] = null;
+            $data[1] = $this->app->getAuth()->getLoggedUserId();
+        }
+        return $this->json($data);
     }
 
     public static function hash($password): string
@@ -130,5 +129,14 @@ class AuthController extends AControllerBase
         $user = User::getOne($this->app->getAuth()->getLoggedUserId());
         $user->delete();
         return $this->logout();
+    }
+
+
+    public function isLogged() : JsonResponse
+    {
+
+        $data = $this->app->getAuth()->isLogged();
+
+        return $this->json($data);
     }
 }

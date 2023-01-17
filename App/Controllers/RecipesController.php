@@ -61,14 +61,14 @@ class RecipesController extends AControllerBase
         $recipe->setIdUser($this->app->getAuth()->getLoggedUserId());
         $recipe->save();
 
-        return $this->redirect("?c=admin");
+        return $this->redirect("?c=admin&a=recipes");
     }
 
     public function delete() {
         $recipe = Recipe::getOne($this->request()->getValue('id'));
         $recipe->delete();
 
-        return $this->redirect("?c=admin");
+        return $this->redirect("?c=admin&a=recipes");
     }
 
     public function like() : Response {
