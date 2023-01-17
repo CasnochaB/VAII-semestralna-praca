@@ -48,7 +48,7 @@ class Login{
 
     async logIn() {
         try {
-            let response = await fetch("?c=auth&a=login", {
+            let response = await fetch("?c=auth&a=loginAJAX", {
                 method: 'POST', // or 'PUT'
                 headers: {
                     'Content-Type': "application/json",

@@ -27,9 +27,22 @@ class AuthController extends AControllerBase
 
     /**
      * Login a user
-     * @return \App\Core\Responses\RedirectResponse|\App\Core\Responses\JsonResponse
+     * @return \App\Core\Responses\RedirectResponse|\App\Core\Responses\ViewResponse
      */
-    public function login(): JsonResponse
+    public function login() {
+        $formData = $this->app->getRequest()->getPost();
+        $logged = null;
+        if (isset($formData['submit'])) {
+            $logged = $this->app->getAuth()->login($formData['login'], $formData['password']);
+            if ($logged) {
+                return $this->redirect('?c=home');
+            }
+        }
+        $data = ($logged === false ? ['message' => 'Zlý login alebo heslo!'] : []);
+        return $this->html($data);
+    }
+
+    public function loginAJAX(): JsonResponse
     {
         $formData = json_decode(file_get_contents('php://input'));
 
@@ -61,38 +74,39 @@ class AuthController extends AControllerBase
         $formData = $this->app->getRequest()->getPost();
         $registered = null;
         $message = "";
-        if (strlen($formData['Rpassword']) < 5 || strlen($formData['RpasswordP']) < 5) {
-            $message = "Heslo musi mať aspon 5 znakov";
-        } else {
-            if (isset($formData['submitRegister'])) {
-                $message = "uspesne registrovany";
-                if (strlen($formData['Rlogin']) < 5) {
-                    $message = "Login musi mat aspon 5 znakov";
-                } else {
-                    if (count(User::getAll('login = ?', [$formData['Rlogin']])) > 0) {
-                        $message = "Login už existuje";
+        if (isset($formData['submitRegister'])) {
+            if (strlen($formData['Rpassword']) < 5 || strlen($formData['RpasswordP']) < 5) {
+                $message = "Heslo musi mať aspon 5 znakov";
+            } else {
+                if (isset($formData['submitRegister'])) {
+                    $message = "uspesne registrovany";
+                    if (strlen($formData['Rlogin']) < 5) {
+                        $message = "Login musi mat aspon 5 znakov";
                     } else {
-                        $registered = $this->app->getAuth()->register($formData['Rlogin'], $formData['Rpassword'], $formData['RpasswordP']);
-                        if ($registered) {
-                            $id = $this->request()->getValue('id');
-                            $user = ($id ? User::getOne($id) : new User());
-
-                            $user->setLogin($this->request()->getValue('Rlogin'));
-                            $password = ($this->request()->getValue('Rpassword'));
-                            $password = self::hash($password);
-                            $user->setPassword($password);
-                            $user->save();
-
-                            $this->app->getAuth()->login($formData['Rlogin'], $formData['Rpassword']);
-                            return $this->redirect('?c=home');
+                        if (count(User::getAll('login = ?', [$formData['Rlogin']])) > 0) {
+                            $message = "Login už existuje";
                         } else {
-                            $message = "hesla sa nezhoduju";
+                            $registered = $this->app->getAuth()->register($formData['Rlogin'], $formData['Rpassword'], $formData['RpasswordP']);
+                            if ($registered) {
+                                $id = $this->request()->getValue('id');
+                                $user = ($id ? User::getOne($id) : new User());
+
+                                $user->setLogin($this->request()->getValue('Rlogin'));
+                                $password = ($this->request()->getValue('Rpassword'));
+                                $password = self::hash($password);
+                                $user->setPassword($password);
+                                $user->save();
+
+                                $this->app->getAuth()->login($formData['Rlogin'], $formData['Rpassword']);
+                                return $this->redirect('?c=home');
+                            } else {
+                                $message = "hesla sa nezhoduju";
+                            }
                         }
                     }
                 }
             }
         }
-
         $data = ['message2' => $message];
         return $this->html($data, 'login');
 
