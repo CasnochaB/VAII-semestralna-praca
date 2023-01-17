@@ -42,9 +42,9 @@
 	</div>
 	<div class="spacing">
 	</div>
-	<BUTTON class="btn btn-danger" id="BigNoNoButton" data-bs-toggle="modal" data-bs-target="#deleteModal">
-		<h4>Odstrániť účet</h4>
-	</BUTTON>
+	<button class="btn btn-danger" style="font-size: 24px" id="BigNoNoButton" data-bs-toggle="modal" data-bs-target="#deleteModal">
+		Odstrániť účet
+	</button>
 
 	<div class="modal" id="deleteModal">
 		<div class="modal-dialog">

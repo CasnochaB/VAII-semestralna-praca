@@ -12,7 +12,7 @@ $comments = $data['comments'];
 
 <div class="container">
     <?php foreach ($comments as $comment) { ?>
-        <div class="border row" style="margin-outside: 20px;background-color: rgba(5,4,0,0.35)">
+        <div class="border row" style="background-color: rgba(5,4,0,0.35)">
             <div class="col" >
             <h3>
                 Komentár pre: <a href="?c=recipes&a=open&id=<?=$comment->getIdRecipe()?>"><?= $comment->getAssociatedRecipe($comment->getIdRecipe())->getTitle()?></a>

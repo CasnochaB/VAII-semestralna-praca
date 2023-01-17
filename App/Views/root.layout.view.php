@@ -75,7 +75,7 @@
 
 			<hr>
 			<H2>nemáte učet?</H2>
-			<a style="margin: 10px" type="button" class="btn btn-primary" href="?c=auth&a=register">prejsť na registráciu</a>
+			<a style="margin: 10px" class="btn btn-primary" href="?c=auth&a=register">prejsť na registráciu</a>
 		</div>
 	</div>
 </div>

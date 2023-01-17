@@ -14,7 +14,7 @@ $layout = 'auth';
                     <form class="form-signin" method="post" action="<?= \App\Config\Configuration::LOGIN_URL ?>">
                         <div class="form-label-group mb-3">
                             <input name="login" type="text" id="login" class="form-control" placeholder="Login"
-                                   required autofocus>
+                                   required>
                         </div>
 
                         <div class="form-label-group mb-3">
@@ -37,7 +37,7 @@ $layout = 'auth';
             <?= @$data['message2'] ?>
 		</div>
 		<div class="form-group mb-3">
-			<input name="Rlogin" type="text" class="form-control" id="Rlogin" placeholder="Zadajte login" required autofocus>
+			<input name="Rlogin" type="text" class="form-control" id="Rlogin" placeholder="Zadajte login" required>
 		</div>
 		<div class="form-group mb-3">
 			<input name="Rpassword" type="password" class="form-control" id="Rpassword" placeholder="Zadajte Heslo" required minlength="5">
@@ -45,7 +45,7 @@ $layout = 'auth';
 		<div class="form-group mb-3">
 			<input name="RpasswordP" type="password" class="form-control" id="RpasswordP" placeholder="Potvrďte Heslo" required minlength="5">
 		</div>
-		<button class="btn btn-primary" type="submit" name="submitRegister" style="margin-top: 30px;margin-bottom: 30px"><h2>Zaregistrovať sa</h2></button>
+		<button class="btn btn-primary" type="submit" name="submitRegister" style="margin-top: 30px;margin-bottom: 30px">Zaregistrovať sa</button>
 	</form>
 
 	<div class="spacing"></div>
