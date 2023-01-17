@@ -102,6 +102,11 @@ body {
 .center-offset {
     text-align: center;
 }
+.verc {
+    display: flex;
+    justify-content: center; /* Align horizontal */
+    align-items: center; /* Align vertical */
+}
 .right-offset {
     float: right;
     text-align: right;

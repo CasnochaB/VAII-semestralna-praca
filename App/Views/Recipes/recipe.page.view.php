@@ -26,7 +26,7 @@ $recipe = $data['recipe'];
         </div>
         <div class="col center-offset">
             <div>
-				hodnotenie: <?= $recipe->getRating()?>
+				páči sa: <?= $recipe->getRating()?>
             </div>
         </div>
         <div class="col right-offset">
