@@ -17,7 +17,8 @@ class Login{
             })
         });
         let data = await response.json();
-        if (data) {
+        if (data[0]) {
+            userID=data[1];
             this.logged();
         }
     }

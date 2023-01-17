@@ -149,8 +149,10 @@ class AuthController extends AControllerBase
     public function isLogged() : JsonResponse
     {
 
-        $data = $this->app->getAuth()->isLogged();
-
+        $data[0] = $this->app->getAuth()->isLogged();
+        if ($data[0]) {
+            $data[1] = $this->app->getAuth()->getLoggedUserId();
+        }
         return $this->json($data);
     }
 }
